@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown Viewer</title>
+    <style>
+
+html, body {
+    font-family: Arial;
+}
+
+#main {
+    display: flex;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    border-radius: 20px;
+    border: 2px solid #0002;
+}
+
+#markdowncode {
+    padding: 10px;
+    min-width: 300px;
+    min-height: 420px;
+    max-height: 420px;
+    max-width: 300px;
+    font-family: Consolas;
+}
+
+#output {
+    border-radius: 20px;
+    border: 2px solid #0002;
+    padding: 10px;
+    min-width: 300px;
+    min-height: 420px;
+}
+
+    </style>
+</head>
+<body>
+    <div id="main">
+        <div id="input">
+            <textarea id="markdowncode"># Hello!</textarea>
+        </div>
+        <div id="output"></div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+const textArea = document.getElementById("markdowncode");
+const outputArea = document.getElementById("output");
+
+function update() {
+    outputArea.innerHTML = marked.parse(textArea.value);
+    window.requestAnimationFrame(update);
+}
+
+window.requestAnimationFrame(update);
+    </script>
+</body>
+</html>
